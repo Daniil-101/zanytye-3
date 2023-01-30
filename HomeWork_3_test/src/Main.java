@@ -21,27 +21,33 @@ public class Main {
             for (int j=0; j<answers[i].length; j++) { // обращаемся к столбцу(элементу в стороке) в  двумерного массива
                 System.out.println(answers[i][j]);
             }
-            double otvet = sc.nextDouble(); //получаем ответ от пользователя
-            //3 замечание: Проверка попадает ли ответ пользователя в диапазон ответ
-            while (true) {
-                if (otvet < 1.0 || otvet > answers[i].length){
-                    System.out.println("Нет ответа с таким номером. Попробуй еще раз.");
-                    otvet = sc.nextDouble();
-                }else {
-                    break;
+            if (sc.hasNextDouble()) {
+                double otvet = sc.nextDouble(); //получаем ответ от пользователя
+                //3 замечание: Проверка попадает ли ответ пользователя в диапазон ответ
+                while (true) {
+                    if (otvet < 1.0 || otvet > answers[i].length) {
+                        System.out.println("Нет ответа с таким номером. Попробуй еще раз.");
+                        otvet = sc.nextDouble();
+                    } else {
+                        break;
+                    }
                 }
-            }
-            if (otvet == correntAnswersIndexes[i]) { //проверяем совпадает ли ответ пользователя с верным
-                // вариантом ответа соответствующим номеру строки в массиве array
-                System.out.println("Верно"); // выводим соответствие
-                counter++; //добавляем 1 к счетчику верных вариантов ответов
-            } else { //если не совпадает
-                System.out.println("Неверно");
+                if (otvet == correntAnswersIndexes[i]) { //проверяем совпадает ли ответ пользователя с верным
+                    // вариантом ответа соответствующим номеру строки в массиве array
+                    System.out.println("Верно"); // выводим соответствие
+                    counter++; //добавляем 1 к счетчику верных вариантов ответов
+                } else { //если не совпадает
+                    System.out.println("Неверно");
+                }
+            } else {
+                System.out.println("Извините, но это явно не число. Перезапустите программу и попробуйте снова!");
+                break;
             }
 
         }
         // После прохождения теста отображаем результат
         System.out.println("Вы ответили верно на " + counter);
         System.out.println(counter >= 2 ? "Ты молодец! Тест пройден." : "Ничего страшного, попробуй еще раз.");
+
     }
 }
